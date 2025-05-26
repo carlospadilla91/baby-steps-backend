@@ -2,7 +2,6 @@ package com.project.babysteps.dto.mappers;
 
 import com.project.babysteps.dto.UserDto;
 import com.project.babysteps.model.User;
-
 public class UserMapper {
     public static UserDto toDto(User user) {
         return new UserDto(
