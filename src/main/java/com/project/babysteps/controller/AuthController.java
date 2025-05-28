@@ -3,7 +3,6 @@ package com.project.babysteps.controller;
 import com.project.babysteps.dto.AuthRequest;
 import com.project.babysteps.dto.AuthResponse;
 import com.project.babysteps.dto.CreateUserDto;
-import com.project.babysteps.dto.UserDto;
 import com.project.babysteps.model.User;
 import com.project.babysteps.repository.UserRepo;
 import com.project.babysteps.security.CustomUserDetailsService;
