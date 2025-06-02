@@ -1,33 +1,18 @@
-package com.project.babysteps.model;
+package com.project.babysteps.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Baby {
+@AllArgsConstructor
+public class BabyDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty(message = "Name cannot be blank")
     private String name;
     private String gender;
-    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public Long getId() {
         return id;
@@ -60,9 +45,4 @@ public class Baby {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
 }

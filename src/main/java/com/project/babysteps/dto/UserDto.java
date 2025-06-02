@@ -1,7 +1,5 @@
 package com.project.babysteps.dto;
 
-import lombok.Data;
-
 public class UserDto {
 
     private Long id;

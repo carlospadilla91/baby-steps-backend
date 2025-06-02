@@ -1,13 +1,15 @@
 package com.project.babysteps.service;
 
+import com.project.babysteps.dto.BabyDto;
 import com.project.babysteps.model.Baby;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BabyService {
 
-    Baby createBaby(Baby baby);
-    Baby updateBaby(Long id, Baby baby);
-    List<Baby> getAllBabies();
-    void deleteBaby(Long id);
+    BabyDto createBaby(Long userId, BabyDto babyDto);
+    Baby updateBaby(Long id, BabyDto babyDto);
+    List<BabyDto> getBabiesForUser(Long userId);
+    Optional<BabyDto> getBabyById(Long id);
 }
