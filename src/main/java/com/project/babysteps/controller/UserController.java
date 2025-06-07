@@ -1,18 +1,11 @@
 package com.project.babysteps.controller;
 
 import com.project.babysteps.dto.UserDto;
-import com.project.babysteps.dto.mappers.UserMapper;
-import com.project.babysteps.model.User;
 import com.project.babysteps.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Optional;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -25,12 +18,27 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/me")
-    public ResponseEntity<UserDto> getUser(@AuthenticationPrincipal UserDetails userDetails) {
-        Optional<User> user = userService.getUserByEmail(userDetails.getUsername());
-
-        return user.map(value -> ResponseEntity.ok(UserMapper.toDto(value)))
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
+        return userService.getUserById(id)
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto dto) {
+        return ResponseEntity.ok(userService.updateUser(id, dto));
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

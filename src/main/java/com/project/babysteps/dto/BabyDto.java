@@ -1,18 +1,26 @@
 package com.project.babysteps.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.time.LocalDate;
-
-@NoArgsConstructor
-@AllArgsConstructor
 public class BabyDto {
 
     private Long id;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String gender;
+    @NotEmpty
     private LocalDate dateOfBirth;
+
+    public BabyDto() {}
+
+    public BabyDto(Long id, String name, String gender, LocalDate dateOfBirth) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+    }
 
     public Long getId() {
         return id;
