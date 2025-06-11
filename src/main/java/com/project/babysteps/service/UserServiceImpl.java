@@ -4,7 +4,11 @@ import com.project.babysteps.dto.UserDto;
 import com.project.babysteps.dto.mappers.UserMapper;
 import com.project.babysteps.model.User;
 import com.project.babysteps.repository.UserRepo;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,15 +52,25 @@ public class UserServiceImpl implements UserService{
                 .collect(Collectors.toList());
     }
 
+    @SneakyThrows
     @Override
     public UserDto updateUser(Long id, UserDto dto) {
-        User existingUser = userRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found with ID " + id));
 
-        existingUser.setName(dto.getName());
-        existingUser.setEmail(dto.getEmail());
+        String currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+        System.out.println(currentUserEmail);
+        User currentUser = userRepo.findByEmail(currentUserEmail)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        User updatedUser = userRepo.save(existingUser);
+        if (!currentUser.getId().equals(id)) {
+            throw new AccessDeniedException("You are not allowed to update this user.");
+        }
+
+        User user = userRepo.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setName(dto.getName());
+        user.setEmail(dto.getEmail());
+
+        User updatedUser = userRepo.save(user);
         return UserMapper.toDto(updatedUser);
     }
 
