@@ -44,6 +44,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**", "/h2-console/**").permitAll()
+                        .requestMatchers("/api/babies/**").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/users/**").authenticated()
                         .anyRequest().authenticated()
                 )

@@ -7,6 +7,7 @@ import com.project.babysteps.model.User;
 import com.project.babysteps.repository.BabyRepository;
 import com.project.babysteps.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +27,8 @@ public class BabyServiceImpl implements BabyService {
     }
 
     @Override
-    public BabyDto createBaby(Long userId, BabyDto babyDto) {
-        User user = userRepo.findById(userId)
+    public BabyDto createBaby(String userEmail, BabyDto babyDto) {
+        User user = userRepo.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Baby baby = new Baby();
@@ -41,19 +42,27 @@ public class BabyServiceImpl implements BabyService {
     }
 
     @Override
-    public Baby updateBaby(Long id, BabyDto babyDto) {
-        Baby baby = babyRepository.findById(id)
+    public BabyDto updateBaby(Long id, String userEmail, BabyDto babyDto) {
+        Baby existingBaby = babyRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Baby not found"));
-        baby.setName(babyDto.getName());
-        baby.setDateOfBirth(babyDto.getDateOfBirth());
-        baby.setGender(babyDto.getGender());
+        User user = userRepo.findByEmail(userEmail)
+                        .orElseThrow(() -> new RuntimeException("User not found"));
 
-        return babyRepository.save(baby);
+        if (!existingBaby.getUser().getId().equals(user.getId())) {
+            throw new AccessDeniedException("You do not have permission to update this baby");
+        }
+
+        existingBaby.setName(babyDto.getName());
+        existingBaby.setDateOfBirth(babyDto.getDateOfBirth());
+        existingBaby.setGender(babyDto.getGender());
+
+        Baby savedBaby = babyRepository.save(existingBaby);
+        return BabyMapper.toDto(savedBaby);
     }
 
     @Override
-    public List<BabyDto> getBabiesForUser(Long userId) {
-        return babyRepository.findByUserId(userId)
+    public List<BabyDto> getBabiesForUser(String userEmail) {
+        return babyRepository.findByUserEmail(userEmail)
                 .stream()
                 .map(BabyMapper::toDto)
                 .collect(Collectors.toList());
