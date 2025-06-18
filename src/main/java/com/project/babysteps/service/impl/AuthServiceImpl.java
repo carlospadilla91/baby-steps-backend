@@ -1,4 +1,4 @@
-package com.project.babysteps.service;
+package com.project.babysteps.service.impl;
 
 import com.project.babysteps.dto.AuthRequest;
 import com.project.babysteps.dto.AuthResponse;
@@ -6,6 +6,7 @@ import com.project.babysteps.dto.CreateUserDto;
 import com.project.babysteps.model.User;
 import com.project.babysteps.repository.UserRepo;
 import com.project.babysteps.security.JwtUtil;
+import com.project.babysteps.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

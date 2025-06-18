@@ -1,33 +1,28 @@
-package com.project.babysteps.model;
+package com.project.babysteps.dto;
 
-import jakarta.persistence.*;
+import com.project.babysteps.model.FeedingType;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.time.LocalDateTime;
 
-@Entity
-public class Feeding {
+public class FeedingDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty
     private LocalDateTime timestamp;
     private Double amount;
-    @Enumerated(EnumType.STRING)
     private FeedingType type;
+    private Long babyId;
 
-    @ManyToOne
-    @JoinColumn(name = "baby_id")
-    private Baby baby;
-
-    public Feeding() {
+    public FeedingDto() {
     }
 
-    public Feeding(Long id, LocalDateTime timestamp, Double amount, FeedingType type, Baby baby) {
+    public FeedingDto(Long id, LocalDateTime timestamp, Double amount, FeedingType type, Long babyId) {
         this.id = id;
         this.timestamp = timestamp;
         this.amount = amount;
         this.type = type;
-        this.baby = baby;
+        this.babyId = babyId;
     }
 
     public Long getId() {
@@ -62,11 +57,11 @@ public class Feeding {
         this.type = type;
     }
 
-    public Baby getBaby() {
-        return baby;
+    public Long getBabyId() {
+        return babyId;
     }
 
-    public void setBaby(Baby baby) {
-        this.baby = baby;
+    public void setBabyId(Long babyId) {
+        this.babyId = babyId;
     }
 }

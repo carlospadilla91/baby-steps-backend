@@ -23,6 +23,7 @@ public class BabyController {
     @PostMapping()
     public ResponseEntity<BabyDto> createBaby(@RequestBody BabyDto babyDto, Authentication authentication) {
         String userEmail = authentication.getName();
+        System.out.println("Authenticated user: " + userEmail);
         BabyDto createdBaby = babyService.createBaby(userEmail, babyDto);
         return ResponseEntity.ok(createdBaby);
     }

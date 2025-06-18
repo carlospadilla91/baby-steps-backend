@@ -1,9 +1,10 @@
-package com.project.babysteps.service;
+package com.project.babysteps.service.impl;
 
 import com.project.babysteps.dto.UserDto;
 import com.project.babysteps.dto.mappers.UserMapper;
 import com.project.babysteps.model.User;
 import com.project.babysteps.repository.UserRepo;
+import com.project.babysteps.service.UserService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
@@ -16,7 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepo userRepo;
 

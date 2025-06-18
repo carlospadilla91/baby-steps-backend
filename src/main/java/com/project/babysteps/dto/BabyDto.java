@@ -13,13 +13,16 @@ public class BabyDto {
     @NotEmpty
     private LocalDate dateOfBirth;
 
+    private Long userId;
+
     public BabyDto() {}
 
-    public BabyDto(Long id, String name, String gender, LocalDate dateOfBirth) {
+    public BabyDto(Long id, String name, String gender, LocalDate dateOfBirth, Long userId) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
+        this.userId = userId;
     }
 
     public Long getId() {
@@ -52,5 +55,13 @@ public class BabyDto {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

@@ -1,4 +1,4 @@
-package com.project.babysteps.service;
+package com.project.babysteps.service.impl;
 
 import com.project.babysteps.dto.BabyDto;
 import com.project.babysteps.dto.mappers.BabyMapper;
@@ -6,6 +6,7 @@ import com.project.babysteps.model.Baby;
 import com.project.babysteps.model.User;
 import com.project.babysteps.repository.BabyRepository;
 import com.project.babysteps.repository.UserRepo;
+import com.project.babysteps.service.BabyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
