@@ -1,33 +1,27 @@
-package com.project.babysteps.model;
+package com.project.babysteps.dto;
 
-import jakarta.persistence.*;
-import lombok.*;
+import com.project.babysteps.model.DiaperType;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.time.LocalDateTime;
 
-@Entity
-public class DiaperChange {
+public class DiaperChangeDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty
     private LocalDateTime timestamp;
-    @Enumerated(EnumType.STRING)
     private DiaperType type;
     private String notes;
+    private Long babyId;
 
-    @ManyToOne
-    @JoinColumn(name = "baby_id")
-    private Baby baby;
+    public DiaperChangeDto() {}
 
-    public DiaperChange() {}
-
-    public DiaperChange(Long id, LocalDateTime timestamp, DiaperType type, String notes, Baby baby) {
+    public DiaperChangeDto(Long id, LocalDateTime timestamp, DiaperType type, String notes, Long babyId) {
         this.id = id;
         this.timestamp = timestamp;
         this.type = type;
         this.notes = notes;
-        this.baby = baby;
+        this.babyId = babyId;
     }
 
     public Long getId() {
@@ -62,11 +56,11 @@ public class DiaperChange {
         this.notes = notes;
     }
 
-    public Baby getBaby() {
-        return baby;
+    public Long getBabyId() {
+        return babyId;
     }
 
-    public void setBaby(Baby baby) {
-        this.baby = baby;
+    public void setBabyId(Long babyId) {
+        this.babyId = babyId;
     }
 }
