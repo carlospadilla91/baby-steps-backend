@@ -1,5 +1,7 @@
 package com.project.babysteps.model;
 
+import com.project.babysteps.model.enums.FeedingType;
+import com.project.babysteps.model.enums.FeedingUnit;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -15,6 +17,9 @@ public class Feeding {
     @Enumerated(EnumType.STRING)
     private FeedingType type;
 
+    @Enumerated(EnumType.STRING)
+    private FeedingUnit unit;
+
     @ManyToOne
     @JoinColumn(name = "baby_id")
     private Baby baby;
@@ -22,11 +27,12 @@ public class Feeding {
     public Feeding() {
     }
 
-    public Feeding(Long id, LocalDateTime timestamp, Double amount, FeedingType type, Baby baby) {
+    public Feeding(Long id, LocalDateTime timestamp, Double amount, FeedingType type, FeedingUnit unit, Baby baby) {
         this.id = id;
         this.timestamp = timestamp;
         this.amount = amount;
         this.type = type;
+        this.unit = unit;
         this.baby = baby;
     }
 
@@ -68,5 +74,13 @@ public class Feeding {
 
     public void setBaby(Baby baby) {
         this.baby = baby;
+    }
+
+    public FeedingUnit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(FeedingUnit unit) {
+        this.unit = unit;
     }
 }

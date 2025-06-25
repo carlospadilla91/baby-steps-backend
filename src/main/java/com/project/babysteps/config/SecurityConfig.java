@@ -46,6 +46,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/feeding/**").authenticated()
                         .requestMatchers("/api/diaper-changes/**").authenticated()
                         .requestMatchers( "/api/users/**").authenticated()
+                        .requestMatchers("/api/naps/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

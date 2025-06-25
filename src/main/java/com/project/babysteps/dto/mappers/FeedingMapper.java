@@ -12,6 +12,7 @@ public class FeedingMapper {
         feedingDto.setTimestamp(feeding.getTimestamp());
         feedingDto.setAmount(feeding.getAmount());
         feedingDto.setType(feeding.getType());
+        feedingDto.setUnit(feeding.getUnit());
         feedingDto.setBabyId(feeding.getBaby().getId());
         return feedingDto;
     }
@@ -22,6 +23,7 @@ public class FeedingMapper {
         feeding.setTimestamp(feedingDto.getTimestamp());
         feeding.setAmount(feedingDto.getAmount());
         feeding.setType(feedingDto.getType());
+        feeding.setUnit(feedingDto.getUnit());
         feeding.setBaby(baby);
         return feeding;
     }

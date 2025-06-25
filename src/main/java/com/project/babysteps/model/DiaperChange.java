@@ -1,7 +1,7 @@
 package com.project.babysteps.model;
 
+import com.project.babysteps.model.enums.DiaperType;
 import jakarta.persistence.*;
-import lombok.*;
 
 import java.time.LocalDateTime;
 

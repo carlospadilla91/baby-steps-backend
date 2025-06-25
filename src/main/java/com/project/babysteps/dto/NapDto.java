@@ -1,25 +1,26 @@
 package com.project.babysteps.dto;
 
-import com.project.babysteps.model.enums.DiaperType;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.time.LocalDateTime;
 
-public class DiaperChangeDto {
+public class NapDto {
 
     private Long id;
     @NotEmpty
-    private LocalDateTime timestamp;
-    private DiaperType type;
+    private LocalDateTime startTime;
+    @NotEmpty
+    private LocalDateTime endTime;
     private String notes;
+
     private Long babyId;
 
-    public DiaperChangeDto() {}
-
-    public DiaperChangeDto(Long id, LocalDateTime timestamp, DiaperType type, String notes, Long babyId) {
+    public NapDto() {
+    }
+    public NapDto(Long id, LocalDateTime startTime, LocalDateTime endTime, String notes, Long babyId) {
         this.id = id;
-        this.timestamp = timestamp;
-        this.type = type;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.notes = notes;
         this.babyId = babyId;
     }
@@ -32,20 +33,20 @@ public class DiaperChangeDto {
         this.id = id;
     }
 
-    public LocalDateTime getTimestamp() {
-        return timestamp;
+    public LocalDateTime getStartTime() {
+        return startTime;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
     }
 
-    public DiaperType getType() {
-        return type;
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
 
-    public void setType(DiaperType type) {
-        this.type = type;
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 
     public String getNotes() {

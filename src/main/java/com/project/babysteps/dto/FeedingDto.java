@@ -1,6 +1,7 @@
 package com.project.babysteps.dto;
 
-import com.project.babysteps.model.FeedingType;
+import com.project.babysteps.model.enums.FeedingType;
+import com.project.babysteps.model.enums.FeedingUnit;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.time.LocalDateTime;
@@ -12,16 +13,18 @@ public class FeedingDto {
     private LocalDateTime timestamp;
     private Double amount;
     private FeedingType type;
+    private FeedingUnit unit;
     private Long babyId;
 
     public FeedingDto() {
     }
 
-    public FeedingDto(Long id, LocalDateTime timestamp, Double amount, FeedingType type, Long babyId) {
+    public FeedingDto(Long id, LocalDateTime timestamp, Double amount, FeedingType type, FeedingUnit unit, Long babyId) {
         this.id = id;
         this.timestamp = timestamp;
         this.amount = amount;
         this.type = type;
+        this.unit = unit;
         this.babyId = babyId;
     }
 
@@ -59,6 +62,14 @@ public class FeedingDto {
 
     public Long getBabyId() {
         return babyId;
+    }
+
+    public FeedingUnit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(FeedingUnit unit) {
+        this.unit = unit;
     }
 
     public void setBabyId(Long babyId) {
