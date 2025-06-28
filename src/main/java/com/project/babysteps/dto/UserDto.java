@@ -1,9 +1,15 @@
 package com.project.babysteps.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+
 public class UserDto {
 
     private Long id;
+    @NotEmpty
     private String name;
+    @NotEmpty
+    @Email
     private String email;
 
     public UserDto() {}

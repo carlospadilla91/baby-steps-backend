@@ -23,7 +23,7 @@ public class FeedingController {
     }
 
     @GetMapping("/{babyId}")
-    public ResponseEntity<List<FeedingDto>> getFeedingsByBabyId(@PathVariable Long babyid) {
-        return ResponseEntity.ok(feedingService.getFeedingsByBabyId(babyid));
+    public ResponseEntity<List<FeedingDto>> getFeedingsByBabyId(@PathVariable Long babyId) {
+        return ResponseEntity.ok(feedingService.getFeedingsByBabyId(babyId));
     }
 }

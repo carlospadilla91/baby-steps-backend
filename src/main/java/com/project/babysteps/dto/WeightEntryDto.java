@@ -1,33 +1,30 @@
-package com.project.babysteps.model;
+package com.project.babysteps.dto;
 
 import com.project.babysteps.model.enums.WeightUnit;
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.time.LocalDate;
 
-@Entity
-public class WeightEntry {
+public class WeightEntryDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty
     private LocalDate date;
+    @NotEmpty
     private Double weight;
+    @NotEmpty
     private WeightUnit unit;
+    private Long babyId;
 
-    @ManyToOne
-    @JoinColumn(name = "baby_id")
-    private Baby baby;
-
-    public WeightEntry() {
+    public WeightEntryDto() {
     }
 
-    public WeightEntry(Long id, LocalDate date, Double weight, WeightUnit unit, Baby baby) {
+    public WeightEntryDto(Long id, LocalDate date, Double weight, WeightUnit unit, Long babyId) {
         this.id = id;
         this.date = date;
         this.weight = weight;
         this.unit = unit;
-        this.baby = baby;
+        this.babyId = babyId;
     }
 
     public Long getId() {
@@ -62,11 +59,11 @@ public class WeightEntry {
         this.unit = unit;
     }
 
-    public Baby getBaby() {
-        return baby;
+    public Long getBabyId() {
+        return babyId;
     }
 
-    public void setBaby(Baby baby) {
-        this.baby = baby;
+    public void setBabyId(Long babyId) {
+        this.babyId = babyId;
     }
 }

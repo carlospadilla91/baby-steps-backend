@@ -1,6 +1,7 @@
 package com.project.babysteps.dto;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +12,7 @@ public class NapDto {
     private LocalDateTime startTime;
     @NotEmpty
     private LocalDateTime endTime;
+    @Size(max = 255)
     private String notes;
 
     private Long babyId;

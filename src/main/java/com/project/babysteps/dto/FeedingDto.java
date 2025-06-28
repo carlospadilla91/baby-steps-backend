@@ -11,8 +11,11 @@ public class FeedingDto {
     private Long id;
     @NotEmpty
     private LocalDateTime timestamp;
+    @NotEmpty
     private Double amount;
+    @NotEmpty
     private FeedingType type;
+    @NotEmpty
     private FeedingUnit unit;
     private Long babyId;
 
