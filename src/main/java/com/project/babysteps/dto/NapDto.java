@@ -8,9 +8,9 @@ import java.time.LocalDateTime;
 public class NapDto {
 
     private Long id;
-    @NotEmpty
+    @NotEmpty(message = "Start time cannot be empty")
     private LocalDateTime startTime;
-    @NotEmpty
+    @NotEmpty(message = "End time cannot be empty"  )
     private LocalDateTime endTime;
     @Size(max = 255)
     private String notes;

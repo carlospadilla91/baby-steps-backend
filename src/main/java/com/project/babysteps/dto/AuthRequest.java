@@ -1,8 +1,16 @@
 package com.project.babysteps.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class AuthRequest {
 
+    @NotBlank(message = "Email is required")
+    @Email
     private String email;
+    @NotBlank(message = "Password is required")
+    @Size(message = "Password must be at least 6 characters long", min = 6, max = 100)
     private String password;
 
     public String getEmail() {

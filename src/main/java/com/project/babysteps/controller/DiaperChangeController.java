@@ -2,6 +2,7 @@ package com.project.babysteps.controller;
 
 import com.project.babysteps.dto.DiaperChangeDto;
 import com.project.babysteps.service.DiaperChangeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class DiaperChangeController {
     }
 
     @PostMapping
-    public ResponseEntity<DiaperChangeDto> create(@RequestBody DiaperChangeDto dto) {
+    public ResponseEntity<DiaperChangeDto> create(@Valid @RequestBody DiaperChangeDto dto) {
         return ResponseEntity.ok(diaperChangeService.createDiaperChange(dto));
     }
 

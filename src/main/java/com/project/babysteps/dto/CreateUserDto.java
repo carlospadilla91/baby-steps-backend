@@ -9,12 +9,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateUserDto {
-    @NotEmpty
+    @NotEmpty(message = "Name cannot be empty")
     private String name;
-    @NotEmpty
+    @NotEmpty(message = "Email cannot be empty")
     @Email
     private String email;
     @Size(min = 6)
+    @NotEmpty(message = "Password cannot be empty")
     private String password;
 
     public String getName() {

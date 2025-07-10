@@ -2,6 +2,7 @@ package com.project.babysteps.controller;
 
 import com.project.babysteps.dto.NapDto;
 import com.project.babysteps.service.NapService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class NapController {
     }
 
     @PostMapping
-    public ResponseEntity<NapDto> createNap(@RequestBody NapDto napDto) {
+    public ResponseEntity<NapDto> createNap(@Valid @RequestBody NapDto napDto) {
         return ResponseEntity.ok(napService.createNap(napDto));
     }
 

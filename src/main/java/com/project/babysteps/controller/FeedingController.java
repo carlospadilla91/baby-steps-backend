@@ -2,6 +2,7 @@ package com.project.babysteps.controller;
 
 import com.project.babysteps.dto.FeedingDto;
 import com.project.babysteps.service.FeedingService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class FeedingController {
     public FeedingController(FeedingService feedingService) {this.feedingService = feedingService;}
 
     @PostMapping
-    public ResponseEntity<FeedingDto> createFeeding(@RequestBody FeedingDto feedingDto) {
+    public ResponseEntity<FeedingDto> createFeeding(@Valid @RequestBody FeedingDto feedingDto) {
         return ResponseEntity.ok(feedingService.createFeeding(feedingDto));
     }
 

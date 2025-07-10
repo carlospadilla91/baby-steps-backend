@@ -4,6 +4,7 @@ import com.project.babysteps.dto.AuthRequest;
 import com.project.babysteps.dto.AuthResponse;
 import com.project.babysteps.dto.CreateUserDto;
 import com.project.babysteps.service.AuthService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,12 +22,12 @@ public class AuthController {
     public AuthController(AuthService authService) { this.authService = authService; }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@RequestBody CreateUserDto dto) {
+    public ResponseEntity<AuthResponse> register(@Valid @RequestBody CreateUserDto dto) {
        return ResponseEntity.ok(authService.register(dto));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
+    public ResponseEntity<AuthResponse> login(@Valid @RequestBody AuthRequest request) {
         return ResponseEntity.ok(authService.authenticate(request));
     }
 }

@@ -3,19 +3,20 @@ package com.project.babysteps.dto;
 import com.project.babysteps.model.enums.FeedingType;
 import com.project.babysteps.model.enums.FeedingUnit;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
 public class FeedingDto {
 
     private Long id;
-    @NotEmpty
+    @NotNull(message = "Time is required")
     private LocalDateTime timestamp;
-    @NotEmpty
+    @NotEmpty(message = "Amount is required")
     private Double amount;
-    @NotEmpty
+    @NotEmpty(message = "Feeding type is required")
     private FeedingType type;
-    @NotEmpty
+    @NotEmpty(message = "Feeding unit is required")
     private FeedingUnit unit;
     private Long babyId;
 

@@ -8,11 +8,11 @@ import java.time.LocalDate;
 public class WeightEntryDto {
 
     private Long id;
-    @NotEmpty
+    @NotEmpty(message = "Date is required")
     private LocalDate date;
-    @NotEmpty
+    @NotEmpty(message = "Weight is required")
     private Double weight;
-    @NotEmpty
+    @NotEmpty(message = "Unit is required")
     private WeightUnit unit;
     private Long babyId;
 

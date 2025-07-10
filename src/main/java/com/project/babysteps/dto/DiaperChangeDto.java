@@ -1,7 +1,7 @@
 package com.project.babysteps.dto;
 
 import com.project.babysteps.model.enums.DiaperType;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 public class DiaperChangeDto {
 
     private Long id;
-    @NotEmpty
+    @NotNull(message = "Timestamp is required")
     private LocalDateTime timestamp;
-    @NotEmpty
+    @NotNull(message = "Diaper type is required")
     private DiaperType type;
     @Size(max = 255)
     private String notes;

@@ -2,6 +2,7 @@ package com.project.babysteps.controller;
 
 import com.project.babysteps.dto.WeightEntryDto;
 import com.project.babysteps.service.WeightEntryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class WeightEntryController {
     }
 
     @PostMapping
-    public ResponseEntity<WeightEntryDto> createWeightEntry(@RequestBody WeightEntryDto weightEntryDto) {
+    public ResponseEntity<WeightEntryDto> createWeightEntry(@Valid @RequestBody WeightEntryDto weightEntryDto) {
         return ResponseEntity.ok(weightEntryService.createWeightEntry(weightEntryDto));
     }
 

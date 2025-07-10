@@ -2,6 +2,7 @@ package com.project.babysteps.controller;
 
 import com.project.babysteps.dto.BabyDto;
 import com.project.babysteps.service.BabyService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -21,7 +22,7 @@ public class BabyController {
     }
 
     @PostMapping()
-    public ResponseEntity<BabyDto> createBaby(@RequestBody BabyDto babyDto, Authentication authentication) {
+    public ResponseEntity<BabyDto> createBaby(@Valid @RequestBody BabyDto babyDto, Authentication authentication) {
         String userEmail = authentication.getName();
         System.out.println("Authenticated user: " + userEmail);
         BabyDto createdBaby = babyService.createBaby(userEmail, babyDto);

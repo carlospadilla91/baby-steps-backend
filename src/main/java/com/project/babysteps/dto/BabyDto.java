@@ -1,16 +1,17 @@
 package com.project.babysteps.dto;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 public class BabyDto {
 
     private Long id;
-    @NotEmpty
+    @NotEmpty(message = "Name cannot be empty")
     private String name;
-    @NotEmpty
+    @NotEmpty(message = "Gender cannot be empty")
     private String gender;
-    @NotEmpty
+    @NotNull(message = "Date of birth is required")
     private LocalDate dateOfBirth;
 
     private Long userId;
